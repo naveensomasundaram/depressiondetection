@@ -7,6 +7,7 @@ from sklearn.externals import joblib
 import pickle
 import os
 from datetime import datetime
+from pytz import timezone
 import os.path
 from os import path
 import pathlib
@@ -34,7 +35,13 @@ def predict():
 		my_prediction = clf.predict(vect)
 		print(my_prediction[0])
 
-		now  = (datetime.now()).strftime("%x %X")
+        fmt = "%Y-%m-%d %H:%M:%S %Z%z"
+		now_utc = datetime.now(timezone('UTC'))
+        now_india = now_pacific.astimezone(timezone('Asia/Kolkata''))
+        now = now_berlin.strftime(fmt)
+
+        
+        
 		jsonfilename = "client_data/" + username + ".json"
 		file = pathlib.Path(jsonfilename)
 		previous_data = []
