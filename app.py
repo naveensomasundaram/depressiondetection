@@ -35,7 +35,7 @@ def predict():
         my_prediction = clf.predict(vect)
         print(my_prediction[0])
 
-        fmt = "%Y-%m-%d %H:%M:%S %Z%z"
+        fmt = "%Y-%m-%d %H:%M:%S"
         now_utc = datetime.now(timezone('UTC'))
         now_india = now_utc.astimezone(timezone('Asia/Kolkata'))
         now = now_india.strftime(fmt)
